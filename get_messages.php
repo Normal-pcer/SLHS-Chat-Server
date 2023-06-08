@@ -8,7 +8,7 @@ $chat_id = $_GET['chat_id'];
 
 $usr = run_sql("SELECT * FROM `users` WHERE `user_id`=" . $user_id);
 $usr = $usr->fetch_assoc();
-if ($usr['last_token'] != $token)  die('{"status": "Error", "data": "permission_error"}');
+if ($usr['last_token'] != $token)  die('{"status": "Error", "data": "wrong_token"}');
 
 if ($chat_id == -1) {  // 未指定群聊
     $sql = 'SELECT * FROM `messages` WHERE JSON_CONTAINS((SELECT `members` FROM `chats` WHERE `messages`.`from`=`chats`.`chat_id` LIMIT 1), CAST(%user_id% AS JSON), "$") AND `messages`.`msg_id`>%lastid% ORDER BY `messages`.`time` DESC';
