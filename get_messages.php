@@ -1,10 +1,10 @@
 <?php
 require_once 'sql.php';
 
-$user_id = $_GET['user_id'];
-$token = $_GET['token'];
-$last = $_GET['last'];
-$chat_id = $_GET['chat_id'];
+$user_id = $_POST['user_id'];
+$token = $_POST['token'];
+$last = $_POST['last'];
+$chat_id = $_POST['chat_id'];
 
 $usr = run_sql("SELECT * FROM `users` WHERE `user_id`=" . $user_id);
 $usr = $usr->fetch_assoc();
