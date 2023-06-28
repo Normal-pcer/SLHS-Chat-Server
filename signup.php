@@ -16,7 +16,7 @@ if ($rst->fetch_assoc()) {
     $sql = 'INSERT INTO `users` VALUES (NULL, "%name%", "%pass%", "%email%", "/images/default-avatar.png", "[]", "[]", -1)';
     $sql = str_replace('%name%', $username, str_replace('%pass%', $hashed_pass, str_replace('%email%', $email, $sql)));
     $db->query($sql);
-    $sql = 'SELECT LAST_INSERT_ID() AS `id`';
+    $sql = 'SELECT `user_id` FROM `users` ORDER BY `user_id` DESC LIMIT 1';
     $rst = $db->query($sql)->fetch_assoc();
-    echo '{"status": "ok", "info": "none", "id": ' . $rst['id'] . '}';
+    echo '{"status": "ok", "info": "none", "id": ' . $rst['user_id'] . '}';
 }
